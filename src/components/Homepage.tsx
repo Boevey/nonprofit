@@ -40,7 +40,11 @@ const featuredDogs = [
   },
 ]
 
-export default function Homepage() {
+type HomepageProps = {
+  onDonate: () => void
+}
+
+export default function Homepage({ onDonate }: HomepageProps) {
   return (
     <main id="home">
       <section className="hero-section">
@@ -140,7 +144,7 @@ export default function Homepage() {
             <p className="eyebrow">Support the mission</p>
             <h2>Help us give dogs the care, comfort, and safety they deserve.</h2>
           </div>
-          <button type="button" className="btn btn-primary">
+          <button type="button" className="btn btn-primary" onClick={onDonate}>
             Donate now
           </button>
         </div>
