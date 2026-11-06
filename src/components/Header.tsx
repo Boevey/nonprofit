@@ -1,9 +1,10 @@
 type HeaderProps = {
   currentPage: 'home' | 'about'
   onNavigate: (page: 'home' | 'about') => void
+  onDonate: () => void
 }
 
-export default function Header({ currentPage, onNavigate }: HeaderProps) {
+export default function Header({ currentPage, onNavigate, onDonate }: HeaderProps) {
   return (
     <header className="site-header">
       <div className="container nav-bar">
@@ -33,6 +34,9 @@ export default function Header({ currentPage, onNavigate }: HeaderProps) {
             onClick={() => onNavigate('about')}
           >
             About Me
+          </button>
+          <button type="button" className="btn btn-primary nav-cta" onClick={onDonate}>
+            Donate
           </button>
         </div>
       </div>

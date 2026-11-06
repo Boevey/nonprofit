@@ -1,57 +1,45 @@
-import profilePic from '../assets/profilepic.png'
+import aboutMeContent from '../data/aboutMe.json'
 
-const storyPoints = [
-  {
-    title: 'Compassion first',
-    text: 'We believe every dog deserves a safe place, thoughtful care, and a future built on trust.',
-  },
-  {
-    title: 'Care with purpose',
-    text: 'From rescue to recovery, we focus on the health, comfort, and emotional well-being of every dog.',
-  },
-  {
-    title: 'Families for life',
-    text: 'We match each dog with the right home through gentle guidance, support, and long-term care.',
-  },
-]
+const aboutMe = aboutMeContent as {
+  name: string
+  role: string
+  focusArea: string
+  location: string
+  email: string
+  phone: string
+  course: string
+  story: string[]
+  stats: Array<{ value: string; label: string }>
+  values: Array<{ title: string; text: string }>
+  image?: string
+}
 
-const stats = [
-  { value: '8+', label: 'Years of rescue work' },
-  { value: '500+', label: 'Dogs supported' },
-  { value: '100%', label: 'Volunteer-led care' },
-]
+const profileImage = aboutMe.image
 
 export default function AboutMe() {
   return (
     <section className="about-section" id="about">
       <div className="container about-bio-wrap">
         <div className="about-image about-portrait">
-          <img src={profilePic} alt="Dog rescue volunteer with a rescued dog" />
+          <img src={profileImage} alt={aboutMe.name} />
         </div>
 
         <div className="about-copy bio-copy">
-          <h2>Cayanan, Airoen Boevey G.</h2>
-          <p className="bio-role">Founder & Rescue Advocate</p>
+          <h2>{aboutMe.name}</h2>
+          <p className="bio-role">{aboutMe.role}</p>
 
           <div className="bio-details">
-            <p>Practice Group: Dog Rescue & Community Care</p>
-            <p>Location: Angeles City</p>
-            <p>Email: cayanan.airoenboevey@student.auf.edu.ph</p>
-            <p>Phone: (63) 912 345 6789</p>
-            <p>Course: Information Technology at Angeles University Foundation</p>
+            <p>Focus Area: {aboutMe.focusArea}</p>
+            <p>Location: {aboutMe.location}</p>
+            <p>Email: {aboutMe.email}</p>
+            <p>Phone: {aboutMe.phone}</p>
+            <p>Course: {aboutMe.course}</p>
           </div>
 
           <div className="bio-story">
-            <p>
-              I started Pawly after seeing how many loving dogs were waiting in shelters, overlooked and in need
-              of care. What began as a small act of kindness grew into a mission to help dogs heal, feel safe,
-              and find forever homes where they are truly valued.
-            </p>
-            <p>
-              Every rescue has a story. Some arrive frightened and unsure, while others need medical attention,
-              patience, and time to trust again. I believe that every dog deserves a future shaped by dignity,
-              comfort, and unconditional love.
-            </p>
+            {aboutMe.story.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </div>
       </div>
@@ -63,7 +51,7 @@ export default function AboutMe() {
         </div>
 
         <div className="values-grid">
-          {storyPoints.map((point) => (
+          {aboutMe.values.map((point) => (
             <article key={point.title} className="value-card">
               <span className="value-icon" aria-hidden="true">
                 {point.title === 'Compassion first' ? '❤' : point.title === 'Care with purpose' ? '✦' : '🏠'}
